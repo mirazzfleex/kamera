@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Kamera Aç</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 40px;
+    }
+    video {
+      width: 90%;
+      max-width: 400px;
+      border: 2px solid black;
+      border-radius: 10px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Kamerayı Aç</h2>
+  <video id="video" autoplay playsinline></video>
+  <br>
+  <button onclick="openCamera()">Kamerayı Başlat</button>
+
+  <script>
+    function openCamera() {
+      navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+        .then(stream => {
+          document.getElementById("video").srcObject = stream;
+        })
+        .catch(err => {
+          alert("Kamera izni verilmedi veya hata oluştu.");
+        });
+    }
+  </script>
+
+</body>
+</html>
